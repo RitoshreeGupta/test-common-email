@@ -16,7 +16,6 @@ public class EmailTest{
 	private EmailConcrete email;
 	private static final String TESTemail = "abc@cb.com";
 	
-	
 	@Before
 	public void setUpEmailTest() throws Exception {
 		email = new EmailConcrete();
@@ -47,6 +46,16 @@ public class EmailTest{
 		assertEquals(1, email.getCcAddresses().size());
 		
 	}
+	
+	@Test
+	public void testaddReplyTo() throws Exception{
+		
+		email.addReplyTo(TESTemail, "Ritoshree");
+		
+		assertEquals(1, email.getReplyToAddresses().size());
+		
+	}
+
 
 	
 }
