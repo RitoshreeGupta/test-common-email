@@ -55,6 +55,17 @@ public class EmailTest{
 		assertEquals(1, email.getReplyToAddresses().size());
 		
 	}
+	
+	@Test
+	public void testSetFrom() throws Exception{
+		
+		email.setFrom("ab@cd.com");
+		
+		assertEquals("ab@cd.com", email.getFromAddress().toString());
+		
+	}
+	
+	
 
 
 	
