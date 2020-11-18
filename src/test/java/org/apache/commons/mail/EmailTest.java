@@ -14,6 +14,7 @@ public class EmailTest{
 			};
 			
 	private EmailConcrete email;
+	private static final String TESTemail = "abc@cb.com";
 	
 	
 	@Before
@@ -37,5 +38,15 @@ public class EmailTest{
 		
 		
 	}
+	
+	@Test
+	public void testAddCc() throws Exception{
+		
+		email.addCc(TESTemail);
+		
+		assertEquals(1, email.getCcAddresses().size());
+		
+	}
+
 	
 }
