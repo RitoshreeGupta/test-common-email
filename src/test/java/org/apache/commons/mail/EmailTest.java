@@ -2,6 +2,9 @@ package org.apache.commons.mail;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Properties;
+
+import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 import org.junit.After;
@@ -102,17 +105,6 @@ public class EmailTest{
 	assertEquals(Subject,"test mail");
 	
 	}
-
-	
-	
-	@Test
-	public void testSetFrom() throws Exception{
-		
-		email.setFrom("ab@cd.com");
-		
-		assertEquals("ab@cd.com", email.getFromAddress().toString());
-		
-	}
 	
 	@Test
 	public void testgetHostName() throws Exception{
@@ -129,6 +121,45 @@ public class EmailTest{
 		assertEquals(null, email.getHostName());
 		
 	}
+	
+	@Test
+	public void testgetMailSession() throws Exception{
+		final String username = "username@gmail.com";
+		final String password = "password";
+
+		Properties props = new Properties();
+		props.put(EmailConstants.MAIL_HOST, "smtp.gmail.com");
+		props.put(EmailConstants.MAIL_PORT, "587");
+		props.put(EmailConstants.MAIL_SMTP_USER, "username@gmail.com");
+		props.put(EmailConstants.MAIL_SMTP_PASSWORD, "password");
+		props.put(EmailConstants.MAIL_SMTP_AUTH, "true");
+		
+		
+		Session p = Session.getInstance(props);
+		email.setMailSession(p);
+		Session p1 = email.getMailSession();
+		String prop = p1.getProperty(EmailConstants.MAIL_HOST);
+		assertEquals(prop, "smtp.gmail.com");
+	}
+	
+	@Test
+	public void testgetMailSession2() throws Exception{
+		
+	    thrown.expectMessage("Cannot find valid hostname for mail session");
+	    email.getMailSession();
+	}
+
+
+	@Test
+	public void testSetFrom() throws Exception{
+		
+		email.setFrom("ab@cd.com");
+		
+		assertEquals("ab@cd.com", email.getFromAddress().toString());
+		
+	}
+	
+	
 	
 	
 	
