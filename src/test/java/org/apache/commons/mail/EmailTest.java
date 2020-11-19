@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
-
 import org.junit.Test;
 
 public class EmailTest{
@@ -27,6 +26,7 @@ public class EmailTest{
 		
 		
 	}
+
 	
 	@Test
 	public void testAddBcc() throws Exception{
@@ -74,8 +74,14 @@ public class EmailTest{
 		
 	}
 	
+	@Test
+	public void testgetHostName1() throws Exception{
+		
+		assertEquals(null, email.getHostName());
+		
+	}
 	
-
-
+	
+	
 	
 }
