@@ -2,6 +2,8 @@ package org.apache.commons.mail;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.mail.internet.MimeMessage;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -78,6 +80,30 @@ public class EmailTest{
 		assertEquals(1, email.getReplyToAddresses().size());
 		
 	}
+	
+	@Test
+	public void testbuildMimeMessage() throws Exception{
+	email.setHostName("localhost");
+	email.setSmtpPort(8080);
+	email.setFrom("a@b.com");
+	email.addTo("c@d.com");
+	email.setSubject("test mail");
+
+	final String headerValue = "1234567890 1234567890 123456789 01234567890 123456789 0123456789 01234567890 01234567890";
+	email.addHeader("X-LongHeader", headerValue);
+
+	email.buildMimeMessage();
+
+	MimeMessage msg = email.getMimeMessage();
+	msg.saveChanges();
+
+	String Subject = msg.getSubject();
+
+	assertEquals(Subject,"test mail");
+	
+	}
+
+	
 	
 	@Test
 	public void testSetFrom() throws Exception{
