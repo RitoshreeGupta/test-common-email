@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class EmailTest{
 	
@@ -27,6 +29,9 @@ public class EmailTest{
 		
 	}
 
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+
 	
 	@Test
 	public void testAddBcc() throws Exception{
@@ -46,6 +51,24 @@ public class EmailTest{
 		assertEquals(1, email.getCcAddresses().size());
 		
 	}
+	
+	@Test
+	public void testAddHeader() throws Exception{
+		final String header = "header";
+		
+		email.addHeader(header, header);
+		assertEquals(1, email.headers.size());
+		
+	}
+	
+	@Test
+	public void testAddHeader2() throws Exception{
+		
+		thrown.expectMessage("name can not be null or empty");
+		email.addHeader("", "header");
+		
+	}
+
 	
 	@Test
 	public void testaddReplyTo() throws Exception{
