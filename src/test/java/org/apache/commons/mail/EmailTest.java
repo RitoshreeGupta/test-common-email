@@ -148,6 +148,16 @@ public class EmailTest{
 	    thrown.expectMessage("Cannot find valid hostname for mail session");
 	    email.getMailSession();
 	}
+	
+	
+	@Test
+	public void testgetSocketConnectionTimeout() throws Exception{		
+		
+		int SocketConnection = email.getSocketConnectionTimeout();
+		
+		assertEquals(SocketConnection, email.socketConnectionTimeout);
+		
+	}
 
 
 	@Test
