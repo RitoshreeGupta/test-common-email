@@ -2,6 +2,7 @@ package org.apache.commons.mail;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.Date;
 import java.util.Properties;
 
 import javax.mail.Session;
@@ -150,6 +151,12 @@ public class EmailTest{
 	}
 	
 	
+	@Test
+	public void testgetSentDate() throws Exception{
+		
+		
+	}
+
 	@Test
 	public void testgetSocketConnectionTimeout() throws Exception{		
 		
